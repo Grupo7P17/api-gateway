@@ -1,11 +1,19 @@
 const {gql} = require('apollo-server');
 
 petTypes = gql `
-    type Pet{
-          username: String!
-          name: String!
-          breed: String!
-          age: Int!
+    union petUnionValidate = Pet | PetError
+
+    type Pet {
+        username: String!
+        name: String!
+        breed: String!
+        age: Int!
+    }
+
+    type PetError {
+        message: String!
+        code: Int!
+        status: String!
     }
 
     input PetInput{
@@ -20,7 +28,7 @@ petTypes = gql `
         age: Int!
     }
     extend type Query{
-        petByUsername(username: String!) : [Pet]
+        petByUsername(username: String!): Pet
     }
     extend type Mutation{
         createPet(pet: PetInput): Pet!

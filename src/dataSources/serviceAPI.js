@@ -7,13 +7,26 @@ class ServiceAPI extends RESTDataSource {
         this.baseURL = serverConfig.serviceAPIurl;
     }
 
-    async createService(service){
-        service = new Object(JSON.parse(JSON.stringify(service)));
-        return await this.post('/service/create/', service);
+    async createService ( service ) {
+
+        const _service = new Object(JSON.parse(JSON.stringify(service)));
+
+        const response = await this.post('/service/create/', _service);
+
+        return response;
+
     }
-    async getService(serviceId){
-        return await this.get(`/service/${serviceId}`);
+
+    async getService ( serviceId ) {
+
+        console.log( serviceId );
+
+        const response = await this.get(`/service/${serviceId}`);
+
+        return response;
+
     }
+
     async getServices(){
         return await this.get('/services/');
     }

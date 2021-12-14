@@ -10,9 +10,42 @@ class PetAPI extends RESTDataSource{
         pet = new Object(JSON.parse(JSON.stringify(pet)));
         return await this.post('/pet', pet);
     }
-    async getPet(username){
-        return await this.get(`/pet/${username}`);
+    async getPet(username) {
+
+        let response = null;
+
+        try {
+
+            response = await this.get(`/pet/${username}`);
+            
+        } catch (error) {
+
+            //TODO: Handler error response
+
+            // if (error.extensions && error.extensions.response) {
+
+            //     const resp = error.extensions.response;
+
+            //     response = {
+            //         code: resp.status,
+            //         status: resp.statusText,
+            //         message: resp.body
+            //     };
+                
+            // } else {
+
+            //     response = {
+            //         message: error.message
+            //     };
+
+            // }
+            
+        }
+
+        return response;
+
     }
+
     async deletePet(username){
         return await this.delete(`/pet/delete/${username}`);
 

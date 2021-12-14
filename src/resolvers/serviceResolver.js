@@ -1,9 +1,9 @@
 const serviceResolver = {
     Query: {
-        servicesById: async (_, {serviceId}, {dataSources}) =>{
+        servicesById: async (_, {serviceId}, {dataSources}) => {
             return await dataSources.serviceAPI.getService(serviceId);
         },
-        services: async (_, {}, {dataSources}) =>{
+        services: async (_, {}, {dataSources}) => {
             return await dataSources.serviceAPI.getServices();
         }
     },
